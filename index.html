@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>胡桃技术</title>
+    <style>
+        .wrap {
+            width: 50%;
+            margin: 0 auto;
+        }
+        .item {
+            display: flex;
+            margin: 24px 0;
+        }
+
+        .item label {
+            width: 88px;
+            display: block;
+            height: 32px;
+            line-height: 32px;
+        }
+
+
+        .item input {
+            flex: 8;
+            display: block;
+            height: 32px;
+            line-height: 32px;
+            padding: 0 15px;
+        }
+
+        #submit {
+            width: 100%;
+            display: inline-block;
+            padding:  10px 30px;
+            color: #fff;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            margin: 15px 0;
+            background: #2d8cf0;
+        }
+
+        @media screen and (max-width: 540px) {
+            .wrap {
+                width: 90%;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h2 style="text-align: center;">胡桃魔女套圣遗物参考计算方式</h2>
+
+    <div class="item">
+        <label for="JingTong">精通：</label>
+        <input id="JingTong" type="text" placeholder="精通">
+    </div>
+
+    <div class="item">
+        <label for="BaoShang">爆伤：</label>
+        <input id="BaoShang" type="text" placeholder="爆伤">
+    </div>
+
+    <div class="item">
+        <label for="shengMingBaiFenBi">大生命：</label>
+        <input id="shengMingBaiFenBi" type="text" placeholder="生命百分比">
+    </div>
+
+    <div class="item">
+        <label for="XiaoShengMing">小生命：</label>
+        <input id="XiaoShengMing" type="text" placeholder="小生命">
+    </div>
+
+
+    <div class="item">
+        <label for="GongJiBaiFenBi">大攻击：</label>
+        <input id="GongJiBaiFenBi" type="text" placeholder="攻击百分比">
+    </div>
+    <div class="item">
+        <label for="xiaoGongJi">小攻击</label>
+        <input id="xiaoGongJi" type="text" placeholder="小攻击">
+    </div>
+
+    <button id="submit">
+        提交
+    </button>
+
+    <div>结果：<span id="result-text"></span></div>
+    <div class="tips">
+        <h3>参考值</h3>
+        <p>平均值大于4，裸蒸发6w</p>
+
+        <p>平均值大于5，裸蒸发7w</p>
+
+        <p>平均值大于6，裸蒸发8w</p>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+<script>
+    // 精通
+    const JingTong = 23
+    // 生命百分比
+    const shengMingBaiFenBi = 5.8
+    // 小生命
+    const XiaoShengMing = 906
+    // 爆伤
+    const BaoShang = 7.8
+    // 攻击百分比
+    const GongJiBaiFenBi = 5.8 / 2
+    // 小攻击
+    const xiaoGongJi =  41 / 2
+
+    // 平均值大于4，裸蒸发6w
+    const max4 = 6
+    // 平均值大于5，裸蒸发7w
+    const max5 = 7
+    // 平均值大于6，裸蒸发8w
+    const max6 = 8
+
+
+    document.querySelector('#submit').addEventListener('click', () => {
+        const JingTongValue = $('#JingTong').val() || 0
+        const shengMingBaiFenBiValue = $('#shengMingBaiFenBi').val() || 0
+        const XiaoShengMingValue = $('#XiaoShengMing').val() || 0
+        const BaoShangValue = $('#BaoShang').val() || 0
+        const GongJiBaiFenBiValue = $('#GongJiBaiFenBi').val() || 0
+        const xiaoGongJiValue = $('#xiaoGongJi').val() || 0
+
+        let result = 0;
+        if (JingTongValue) {
+            result += JingTongValue / JingTong
+        }
+        if (shengMingBaiFenBiValue) {
+            result += shengMingBaiFenBiValue / shengMingBaiFenBi
+        }
+        if (XiaoShengMingValue) {
+            result += XiaoShengMingValue / XiaoShengMing
+        }
+        if (BaoShangValue) {
+            result += BaoShangValue / BaoShang
+        }
+        if (GongJiBaiFenBiValue) {
+            result += GongJiBaiFenBiValue / GongJiBaiFenBi
+        }
+        if (xiaoGongJiValue) {
+            result += xiaoGongJiValue / xiaoGongJi
+        }
+
+        document.querySelector('#result-text').innerHTML = result
+    })
+</script>
+</body>
+</html>
